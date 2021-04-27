@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016: Thomson Reuters. All Rights Reserved. Proprietary and Confidential information of Thomson Reuters. Disclosure, Use or Reproduction without the written authorization of Thomson Reuters is prohibited. -->
+<ivysettings>
+
+    <credentials
+      host="cobaltdm.int.thomsonreuters.com"
+      username="build"
+      passwd="build"
+      realm="Sonatype Nexus Repository Manager" />
+    <credentials
+    host="${jfrog.host}"
+    username="${jfrog.username}"
+    passwd="${jfrog.password}"
+    realm="Artifactory Realm" />
+  
+    <resolvers>
+        <chain name="default" returnFirst="true">
+            <ibiblio
+              name="3rd Party Libraries"
+              m2compatible="true"
+              useMavenMetadata="false"
+              root="http://cobaltdm.int.thomsonreuters.com:9001/nexus-webapps/content/repositories/3rdpartycache/" />
+            <ibiblio
+              name="Cobalt Libraries"
+              m2compatible="true"
+              useMavenMetadata="false"
+              root="http://cobaltdm.int.thomsonreuters.com:9001/nexus-webapps/content/repositories/CobaltInternalLibraries/" />
+            <ibiblio
+               name="Application Libraries"
+               m2compatible="true"
+               useMavenMetadata="false"
+               root="http://cobaltdm.int.thomsonreuters.com:9001/nexus-webapps/content/repositories/ApplicationLibraries/" />
+             <!--<ibiblio
+               name="RD Maven Public"
+               m2compatible="true"
+               useMavenMetadata="false"
+               root="http://rdmaven.int.westgroup.com:8081/nexus/content/groups/public/" /> -->
+            <ibiblio
+              name="JFrog Artifactory" 
+              m2compatible="true" 
+              useMavenMetadata="false" 
+              root="https://${jfrog.host}/tr1/libs-release/" />
+            <ibiblio
+               name="central"
+               m2compatible="true"
+            />
+        </chain>
+    </resolvers>
+
+    <settings defaultResolver="default" />
+
+</ivysettings>

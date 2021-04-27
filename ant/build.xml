@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- Copyright 2016: Thomson Reuters. All Rights Reserved. Proprietary and Confidential information of Thomson Reuters. Disclosure, Use or Reproduction without the written authorization of Thomson Reuters is prohibited. -->
+<project name="HamDistance" default="jar" basedir="..\">
+    <property name="source.dir"     value="src"/>
+    <property name="resource.dir"   value="resources"/>
+    <property name="build.dir"      value="build"/>
+    <property name="class.dir"      value="${build.dir}/bin"/>
+    <property name="lib.dir"        value="${class.dir}/lib"/>
+    <property name="jar.dir"        value="${build.dir}/dist"/>
+    <property name="jar.file"       value="${jar.dir}/${ant.project.name}.jar"/>
+    <property name="main-class"     value="com.trgr.cobalt.ediscovery.fileprocessor.fingerprints.Main"/>
+
+    <path id="libraries.path">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- - - - - - - - - - - - - - - - - -
+          target: -init
+          description: Perform all initialization tasks like cleaning up old compiled code,
+                       create directories that do not exist, etc.
+         - - - - - - - - - - - - - - - - - -->
+    <target name="-clean">
+        <echo level="verbose">Deleting old compiled binaries, if existing...</echo>
+        <delete dir="${build.dir}" failonerror="false" includeemptydirs="true" />
+    </target>
+
+
+    <target name="-compile" description="build class files" depends="-clean, -fetch-dependencies">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${class.dir}"/>
+        <javac srcdir="${source.dir}" destdir="${class.dir}">
+            <classpath refid="libraries.path"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="-compile">
+        <mkdir dir="${jar.dir}"/>
+
+        <manifestclasspath property="manifest.classpath" jarfile="${jar.file}">
+            <classpath refid="libraries.path"/>
+        </manifestclasspath>
+
+        <jar destfile="${jar.file}" basedir="${class.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+                <attribute name="Class-Path" value="${manifest.classpath}"/>
+            </manifest>
+            <fileset dir="${resource.dir}"/>
+        </jar>
+    </target>
+
+    <target name="-fetch-dependencies" xmlns:ivy="antlib:org.apache.ivy.ant">
+        <mkdir dir="${lib.dir}"/>
+
+        <!-- Resolve dependencies with Ivy -->
+        <echo level="verbose">Resolving ivy dependencies...</echo>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
+            <classpath>
+                <fileset file="ant/lib/ivy-*.jar" />
+            </classpath>
+        </taskdef>
+        <ivy:settings file="ant/ivysettings.xml" />
+        <!--<ivy:retrieve file="ivy.xml" pattern="${dir.libraries}/[conf]/[artifact].[ext]" taskname="ivy" />-->
+        <ivy:resolve file="ant/ivy.xml"/>
+        <ivy:retrieve pattern="${lib.dir}/[artifact].[ext]" sync="true"  />
+    </target>
+
+</project>

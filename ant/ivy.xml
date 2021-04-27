@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019: Thomson Reuters. All Rights Reserved. Proprietary and Confidential information of Thomson Reuters. Disclosure, Use or Reproduction without the written authorization of Thomson Reuters is prohibited. -->
+<ivy-module version="2.0">
+
+	<info
+  		module="HamDistance"
+  		organisation="com.trgr.ediscovery"
+  		revision="1.0"
+  		status="integration">
+	</info>
+
+	<configurations>
+		<conf name="hammruntime" />
+	</configurations>
+
+	<dependencies defaultconf="hammruntime" defaultconfmapping="hammruntime->default">
+
+		<dependency org="com.planetj.math" name="rabinhash"	rev="2.0" />
+		<dependency org="org.apache.lucene"	name="lucene-core" rev="8.3.0" />
+		<dependency org="org.apache.lucene" name="lucene-analyzers-common" rev="8.3.0" />
+
+		<!-- Jackson libraries -->
+		<dependency org="org.codehaus.jackson" name="jackson-core-asl" rev="1.9.12" />
+		<dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.12" />
+
+		<dependency org="org.apache.tika" name="tika-parsers" rev="1.23"/>
+		<dependency org="commons-codec" name="commons-codec" rev="1.15"/>
+	</dependencies>
+
+</ivy-module>

@@ -1,0 +1,159 @@
+1. To build the jar is necessary to go to ant folder and run command:  ant
+    As a result the jar HamDistance.jar will be built in folder build/dist
+
+2 To run the jar you should go to build/dist folder and run command:
+java -jar HamDistance.jar path_to_input_file.json  path_to_output_file.json
+
+example of path_to_input_file.json has:
+{
+  "MinGrams":4,
+  "MaxGrams":4,
+  "UseStemming":true,
+  "UseStopwords":true,
+
+  "Documents": [
+    {
+      "Path": "C:\\ava\\shingles\\960_Re- Monday.txt",
+      "Language":"en"
+    },
+    {
+      "Path": "C:\\ava\\shingles\\Attach Message B - txt file.txt",
+      "Language":"en"
+    },
+    {
+      "Path": "C:\\ava\\shingles\\sim_1.txt",
+      "Language":"en"
+    },
+    {
+      "Path": "C:\\ava\\shingles\\sim_2.txt",
+      "Language":"en"
+    }
+  ]
+}
+  "MinGrams","MaxGrams","UseStemming","UseStopwords" are necessary
+  You can put here any number of files, 2,3,4 and so on
+
+example of path_to_output_file.json:
+[
+	{
+		"documentLocation": "C:\\ava\\shingles\\960_Re- Monday.txt",
+		"fnRabin": "0000000000000000000000000000000000010111101111010100111100111101",
+		"longRabin": 398282557,
+		"fnFnv1a64": "1010010100000111111111010000110010111111010111010111111010100100",
+		"longFnv1a64": -6554992501422457180,
+		"fnMurmur": "1000100001111101110100100011110001101111000110000111110100000100",
+		"longMurmur": -8611495755458773756,
+		"language": "en",
+		"distances": [
+			{
+				"doc": "C:\\ava\\shingles\\Attach Message B - txt file.txt",
+				"rabinDistance": 6,
+				"fnv1a64Distance": 28,
+				"murmurDistance": 31
+			},
+			{
+				"doc": "C:\\ava\\shingles\\sim_1.txt",
+				"rabinDistance": 26,
+				"fnv1a64Distance": 42,
+				"murmurDistance": 37
+			},
+			{
+				"doc": "C:\\ava\\shingles\\sim_2.txt",
+				"rabinDistance": 24,
+				"fnv1a64Distance": 40,
+				"murmurDistance": 37
+			}
+		]
+	},
+	{
+		"documentLocation": "C:\\ava\\shingles\\Attach Message B - txt file.txt",
+		"fnRabin": "0000000000000000000000000000100001010111101101010101111100100101",
+		"longRabin": 35831242533,
+		"fnFnv1a64": "0011110111101011011110100011111010100001010011100101101001101110",
+		"longFnv1a64": 4461794265253436014,
+		"fnMurmur": "0111011100111110111101100010110110011110010100010000010000101110",
+		"longMurmur": 8592575814859555886,
+		"language": "en",
+		"distances": [
+			{
+				"doc": "C:\\ava\\shingles\\960_Re- Monday.txt",
+				"rabinDistance": 6,
+				"fnv1a64Distance": 28,
+				"murmurDistance": 31
+			},
+			{
+				"doc": "C:\\ava\\shingles\\sim_1.txt",
+				"rabinDistance": 24,
+				"fnv1a64Distance": 28,
+				"murmurDistance": 34
+			},
+			{
+				"doc": "C:\\ava\\shingles\\sim_2.txt",
+				"rabinDistance": 22,
+				"fnv1a64Distance": 28,
+				"murmurDistance": 32
+			}
+		]
+	},
+	{
+		"documentLocation": "C:\\ava\\shingles\\sim_1.txt",
+		"fnRabin": "0000000000000001001001010011100100110001010100100101100101001011",
+		"longRabin": 322402547554635,
+		"fnFnv1a64": "0100100101101001000001100001010101000000001001100001110101101101",
+		"longFnv1a64": 5289765925663677805,
+		"fnMurmur": "0110010010110010001010011111111010101000111111011101101000000110",
+		"longMurmur": 7255908123380931078,
+		"language": "en",
+		"distances": [
+			{
+				"doc": "C:\\ava\\shingles\\960_Re- Monday.txt",
+				"rabinDistance": 26,
+				"fnv1a64Distance": 42,
+				"murmurDistance": 37
+			},
+			{
+				"doc": "C:\\ava\\shingles\\Attach Message B - txt file.txt",
+				"rabinDistance": 24,
+				"fnv1a64Distance": 28,
+				"murmurDistance": 34
+			},
+			{
+				"doc": "C:\\ava\\shingles\\sim_2.txt",
+				"rabinDistance": 4,
+				"fnv1a64Distance": 2,
+				"murmurDistance": 2
+			}
+		]
+	},
+	{
+		"documentLocation": "C:\\ava\\shingles\\sim_2.txt",
+		"fnRabin": "0000000000000001000001010001100100110001010100100101001101001011",
+		"longRabin": 287080736510795,
+		"fnFnv1a64": "0100100101101001010001100001010101000000001001110001110101101101",
+		"longFnv1a64": 5289836294407921005,
+		"fnMurmur": "0111010010110010001010111111111010101000111111011101101000000110",
+		"longMurmur": 8408831827011033606,
+		"language": "en",
+		"distances": [
+			{
+				"doc": "C:\\ava\\shingles\\960_Re- Monday.txt",
+				"rabinDistance": 24,
+				"fnv1a64Distance": 40,
+				"murmurDistance": 37
+			},
+			{
+				"doc": "C:\\ava\\shingles\\Attach Message B - txt file.txt",
+				"rabinDistance": 22,
+				"fnv1a64Distance": 28,
+				"murmurDistance": 32
+			},
+			{
+				"doc": "C:\\ava\\shingles\\sim_1.txt",
+				"rabinDistance": 4,
+				"fnv1a64Distance": 2,
+				"murmurDistance": 2
+			}
+		]
+	}
+]
+
